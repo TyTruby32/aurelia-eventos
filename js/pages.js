@@ -116,19 +116,19 @@
           U.qs('#prog-bar', root).style.width = rango.value + '%';
         };
         U.qs('#btn-prog', root).onclick = () => {
-          const res = S.ACT_ActualizarProgreso(t.id, rango.value);
+          const res = Store.ACT_ActualizarProgreso(t.id, rango.value);
           U.closeModal(); U.toast(res.ok ? 'ok' : 'err', 'Progreso', res.msg); global.App.refresh();
         };
         U.qs('#btn-asignar', root)?.addEventListener('click', () => {
           const aid = U.qs('#sel-asignar', root).value;
           const rol = U.qs('#rol-asignar', root).value;
           if (!aid) return U.toast('warn', 'Selecciona a quién asignar', 'Debes elegir un asistente inscrito en el evento.');
-          const res = S.ACT_AsignarTarea(t.id, aid, rol);
+          const res = Store.ACT_AsignarTarea(t.id, aid, rol);
           U.toast(res.ok ? 'ok' : 'err', 'Asignación de tarea', res.msg);
           if (res.ok) { U.closeModal(); global.App.refresh(); }
         });
         on(root, '[data-unassign]', 'click', (e) => {
-          const res = S.ACT_QuitarAsignacion(e.currentTarget.dataset.unassign);
+          const res = Store.ACT_QuitarAsignacion(e.currentTarget.dataset.unassign);
           U.toast('warn', 'Asignación', res.msg); U.closeModal(); global.App.refresh();
         });
       }
@@ -255,7 +255,7 @@
       const mes = F.MESES[new Date().getMonth()];
       return `<div class="page-head">
         <div><div class="eyebrow">Programación</div><h1>Calendario de eventos</h1>
-        <div class="sub">Componente reutilizable <span class="mono">COMP_CalendarioEventos</span>, el mismo que se consume en el panel de control y en el expediente de cada evento.</div></div>
+        <div class="sub">Componente reutilizable <span class="mono">COMP_CalendarioEventos</span>, el mismo que se consume en el panel de control y en esta pantalla.</div></div>
         <div class="page-actions"><button class="btn btn-gold" id="btn-nuevo-ev">${icon('plus', 15)} Nuevo evento</button></div>
       </div>
       <div class="grid g-main">
@@ -531,18 +531,18 @@
       U.qs('#btn-add-task', root) && (U.qs('#btn-add-task', root).onclick = () => openTareaModal(e.id));
       on(root, '[data-task-open]', 'click', ev => openTareaDetalle(Number(ev.currentTarget.dataset.taskOpen)));
       on(root, '[data-conf]', 'click', ev => {
-        const res = S.ACT_ConfirmarAsistente(ev.currentTarget.dataset.conf);
+        const res = Store.ACT_ConfirmarAsistente(ev.currentTarget.dataset.conf);
         U.toast(res.ok ? 'ok' : 'err', 'Confirmación', res.msg); repaint();
       });
       on(root, '[data-check]', 'click', ev => {
-        const res = S.ACT_CheckIn(ev.currentTarget.dataset.check);
+        const res = Store.ACT_CheckIn(ev.currentTarget.dataset.check);
         U.toast(res.ok ? 'ok' : 'err', 'Check-in', res.msg); repaint();
       });
       const kb = U.qs('.kanban', root);
-      if (kb) U.bindKanban(kb, { onOpen: openTareaDetalle, onMove: (id, col) => { const r = S.ACT_MoverTarea(id, col); if (r.ok) repaint(); return r; } });
+      if (kb) U.bindKanban(kb, { onOpen: openTareaDetalle, onMove: (id, col) => { const r = Store.ACT_MoverTarea(id, col); if (r.ok) repaint(); return r; } });
       U.qs('#btn-send-msg', root) && (U.qs('#btn-send-msg', root).onclick = () => {
         const d = U.readForm(root);
-        const res = S.ACT_EnviarComunicado({ asunto: d.m_asunto, cuerpo: d.m_cuerpo, canal: d.m_canal, audiencia: d.m_aud, eventoId: e.id });
+        const res = Store.ACT_EnviarComunicado({ asunto: d.m_asunto, cuerpo: d.m_cuerpo, canal: d.m_canal, audiencia: d.m_aud, eventoId: e.id });
         U.toast(res.ok ? 'ok' : 'err', 'Comunicación', res.msg);
         if (res.ok) { U.qs('#m_asunto', root).value = ''; U.qs('#m_cuerpo', root).value = ''; repaint(); }
       });
@@ -579,7 +579,7 @@
     mount(root, repaint) {
       U.qs('#btn-add-task', root).onclick = () => openTareaModal();
       const todas = S.tareas().filter(t => { const e = S.evento(t.eventoId); return e && e.estado !== 'cancelado'; });
-      U.bindKanban(U.qs('.kanban', root), { onOpen: openTareaDetalle, onMove: (id, col) => { const r = S.ACT_MoverTarea(id, col); if (r.ok) repaint(); return r; } });
+      U.bindKanban(U.qs('.kanban', root), { onOpen: openTareaDetalle, onMove: (id, col) => { const r = Store.ACT_MoverTarea(id, col); if (r.ok) repaint(); return r; } });
     }
   };
 
@@ -689,7 +689,7 @@
     mount(root, repaint) {
       U.qs('#btn-send', root).onclick = () => {
         const d = U.readForm(root);
-        const res = S.ACT_EnviarComunicado({ eventoId: d.c_evento, asunto: d.c_asunto, cuerpo: d.c_cuerpo, canal: d.c_canal, audiencia: d.c_aud });
+        const res = Store.ACT_EnviarComunicado({ eventoId: d.c_evento, asunto: d.c_asunto, cuerpo: d.c_cuerpo, canal: d.c_canal, audiencia: d.c_aud });
         U.toast(res.ok ? 'ok' : 'err', 'Comunicación', res.msg);
         if (res.ok) repaint();
       };

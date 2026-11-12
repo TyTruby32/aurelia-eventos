@@ -545,13 +545,34 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13px}
   .kanban{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:900px){
+  .topbar{padding:0 14px;gap:10px}
+  .crumbs{min-width:0;overflow:hidden}
+  .crumbs b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
   .sidebar{position:fixed;left:0;top:0;transform:translateX(-100%);transition:.25s;box-shadow:var(--sh-3)}
   .sidebar.open{transform:none}
   .only-mobile{display:grid}
-  .searchbox{width:180px}
+  .searchbox{width:170px;flex:1;min-width:0}
   .user-meta{display:none}
+  .userbox{padding-left:8px}
+  .page-head h1{font-size:24px}
+  .page-actions{width:100%}
   .view{padding:20px 16px 60px}
   .g-2,.g-3,.g-4{grid-template-columns:1fr}
   .cal-cell{min-height:70px}
   .hero h1{font-size:23px}
+  .kpi-val{font-size:23px}
+  .hero-stats{gap:18px}
+  .cal-cell{min-height:54px;padding:3px}
+  .cal-ev{font-size:9px;padding:1.5px 4px}
+}
+@media (max-width:560px){
+  .searchbox{display:none}
+  .crumbs{display:none}
+  .topbar{height:58px}
+  .view{padding:16px 12px 56px}
+  .page-head h1{font-size:21px}
+  .hero{padding:20px 18px}
+  .hero h1{font-size:20px}
+  .hero-stats{gap:14px}
+  .hero-stat .v{font-size:17px}
 }

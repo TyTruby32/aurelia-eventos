@@ -1,0 +1,83 @@
+{
+  "total": 171.343,
+  "pad_ms": 650,
+  "scenes": [
+    {
+      "id": "s00",
+      "start": 0.0,
+      "audio": 15.056,
+      "duration": 15.706,
+      "text": "AURELIA EventOS. Prototipo de gestión de eventos corporativos de alto perfil. Actividad cuatro. Presenta: Celso Iván Castro Vizcarra, matrícula AL, cero siete, uno seis, siete ocho, seis dos."
+    },
+    {
+      "id": "s01",
+      "start": 15.706,
+      "audio": 22.658,
+      "duration": 23.308,
+      "text": "Este es el panel de control. Arriba, cuatro indicadores de operación: eventos activos, tareas abiertas, asistentes registrados y cumplimiento operativo. En el centro, los próximos eventos, cada uno con dos barras: el avance de sus tareas y la ocupación de su aforo. A la derecha, el calendario y la actividad reciente."
+    },
+    {
+      "id": "s02",
+      "start": 39.014,
+      "audio": 15.392,
+      "duration": 16.042,
+      "text": "El calendario es un componente reutilizable: es el mismo bloque que ya vimos en el panel de control. Los eventos se pintan en todos los días que duran, y eso permite detectar solapamientos reales de agenda, algo imposible de ver en una lista."
+    },
+    {
+      "id": "s03",
+      "start": 55.056,
+      "audio": 18.513,
+      "duration": 19.163,
+      "text": "Ahora vamos a crear un evento. El formulario captura nombre, cliente, tipo, fechas, sede, aforo y presupuesto. Al guardar, el microflujo de creación valida las reglas de negocio y genera automáticamente el plan de tareas, tomando la plantilla del tipo de evento."
+    },
+    {
+      "id": "s04",
+      "start": 74.219,
+      "audio": 19.103,
+      "duration": 19.753,
+      "text": "Estamos en el expediente del evento, en la pestaña de asistentes. Intentemos registrar un asistente con un correo inválido: el sistema lo rechaza y marca exactamente el campo con problema. Corregimos el correo y el registro se crea en estado pendiente, con su código de acreditación único."
+    },
+    {
+      "id": "s05",
+      "start": 93.972,
+      "audio": 11.503,
+      "duration": 12.153,
+      "text": "El organizador confirma el registro desde la misma tabla. La confirmación vuelve a validar el aforo disponible antes de aceptar, de modo que nunca se rebase la capacidad del evento."
+    },
+    {
+      "id": "s06",
+      "start": 106.125,
+      "audio": 19.197,
+      "duration": 19.847,
+      "text": "En el tablero de tareas arrastramos una tarjeta de pendiente a en progreso. Cada movimiento ejecuta su microflujo y queda registrado en la bitácora. Si abrimos la tarjeta podemos actualizar el avance; al llegar al cien por ciento, el sistema marca la tarea como completada y sella la fecha de cierre."
+    },
+    {
+      "id": "s07",
+      "start": 125.972,
+      "audio": 14.034,
+      "duration": 14.684,
+      "text": "El centro de comunicación permite segmentar por audiencia. Enviamos un comunicado únicamente a los asistentes confirmados, y el envío queda registrado con su canal, su número de destinatarios y su métrica de lectura."
+    },
+    {
+      "id": "s08",
+      "start": 140.656,
+      "audio": 9.436,
+      "duration": 10.086,
+      "text": "El tablero analítico consolida el avance operativo por evento, la distribución de la cartera por estado y la concentración de presupuesto por cliente."
+    },
+    {
+      "id": "s09",
+      "start": 150.742,
+      "audio": 10.109,
+      "duration": 10.759,
+      "text": "Y la bitácora registra cada operación con usuario, entidad, severidad y fecha. Es la evidencia de que el sistema hizo exactamente lo que dice que hizo."
+    },
+    {
+      "id": "s10",
+      "start": 161.501,
+      "audio": 9.192,
+      "duration": 9.842,
+      "text": "La aplicación está publicada en la dirección que aparece en pantalla, y el código fuente en el repositorio del proyecto. Gracias por su atención."
+    }
+  ]
+}
