@@ -1,0 +1,6 @@
+node_modules/
+tools/
+shots/
+docs/*.tmp
+.DS_Store
+package-lock.json
