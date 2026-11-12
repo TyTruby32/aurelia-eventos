@@ -389,9 +389,12 @@
     const tpl = PLANTILLAS[evento.tipo] || PLANTILLAS['Convención anual'];
     const creadas = [];
     tpl.forEach(t => {
+      // Regla RI-13: una tarea de plantilla nunca nace con fecha límite vencida.
+      let venc = addDias(evento.fechaInicio, t[3]);
+      if (new Date(venc) < hoyInicio()) venc = isoDay(hoyInicio());
       const tarea = {
         id: nextId('tarea'), eventoId: evento.id, titulo: t[0], categoria: t[1], prioridad: t[2],
-        offsetDias: t[3], vencimiento: addDias(evento.fechaInicio, t[3]),
+        offsetDias: t[3], vencimiento: venc,
         horasEstimadas: t[4], progreso: 0, estado: 'pendiente',
         descripcion: `Actividad de ${t[1].toLowerCase()} para «${evento.nombre}». Validar entregables con el cliente antes de la fecha límite.`,
         completadaEn: null, creadoEn: iso(new Date())

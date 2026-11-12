@@ -4,3 +4,7 @@ shots/
 docs/*.tmp
 .DS_Store
 package-lock.json
+video/raw/
+video/audio/
+video/contacto*.png
+video/durations.json
